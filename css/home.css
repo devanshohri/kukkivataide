@@ -736,6 +736,7 @@ svg.active .hero-logo-13 {
 .contact-form textarea:focus {
   outline: none;
   background: var(--green-light);
+  color: var(--green);
 }
 
 .contact-form textarea {

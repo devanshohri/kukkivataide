@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --black: #121212;
+    --black-50: #12121210;
+
+    --white: #FDFDFD;
+    --white-0: #FDFDFD00;
+    --white-50: #fdfdfdc5;
+
+    --green: #141C10;
+    --green-50: #141c1080;
+    --green-0: #141c1000;
+    
+    --green-light: #F4FFAD;
+    --green-light-25: #f4ffad27;
+    --green-lighter: #FBFFE1;
+
+    --purple: #241430;
+    --purple-light: #D9C6E9;
+    --purple-lighter: #F0E9F6;
+
+    --pink: #710931;
+    --pink-light: #F8B4CD;
+    --pink-lighter: #F7D6DC;
+
+    --red: #401714;
+    --red-light: #EE8782;
+    --red-lighter: #F1D4D5;
+
+
+    --logo-height: 4.5rem;
+
+    --primary: var(--white);
+    --primary-50:var(--white-50);
+    --primary-0: var(--white-0);
+
+    --secondary:var(--green);
+    --secondary-50:var(--green-50);
+    --accent:var(--green-lighter);
+
+    --easeOutQuint:cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+    --primary: var(--green);
+    --primary-50:var(--green-50);
+    --primary-0: var(--green-0);
+
+    --secondary:var(--green-lighter);
+    --secondary-50:var(--green-light-25);
+    --accent:var(--green-);
+
+    --black-50: var(--black-50);
+  
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  transition: 
+    background-color 0.5s var(--easeOutQuint), 
+    color 0.5s var(--easeOutQuint), 
+    border-color 0.5s var(--easeOutQuint), 
+    box-shadow 0.5s var(--easeOutQuint);
+}
+
+body {
+  font-family: "Instrument Serif", serif;
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  font-family: "Instrument Serif", sans-serif;
+  font-size: 1.125rem;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 5rem 2.75rem;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.symbol svg {
+  height: 0.8rem;
+}
+
+@media (max-width: 1400px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3{
+    font-size: 1.25rem;
+  }
+
+  p{
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 3rem 1.5rem;
+  }
+}

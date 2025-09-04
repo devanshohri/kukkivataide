@@ -1,0 +1,246 @@
+.nav {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.4s ease;
+  padding: 0rem 2.75rem;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-dark-mode {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-lang {
+  cursor: pointer;
+  background-color: var(--primary);
+  border-radius: 15rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.nav-lang a {
+  font-size: 1.125rem;
+  color: var(--secondary);
+}
+
+.nav-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--primary);
+  border-radius: 1.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+
+
+.nav-header-links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav-header-links ul li a {
+  font-size: 1.125rem;
+  color: var(--secondary);
+}
+
+.nav-header-logo {
+   margin: 0 auto; /* centers the logo */
+  height: var(--logo-height);
+  flex-shrink: 0; /* prevents shrinking */
+}
+
+.nav-menu {
+  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 600px;
+  z-index: 1000;
+  transition: transform 0.4s ease;
+  box-shadow: 0px 0.5rem 1rem var(--black-25);
+}
+
+.nav.hidden {
+  transform: translateX(-50%) translateY(-300%);
+}
+
+
+
+
+@media (max-width: 800px) {
+
+  .nav.hidden .nav-menu {
+    transform: translateX(-50%) translateY(-300%);
+  }
+
+  
+  .nav-flex {
+    display: none;
+  }
+
+  .nav-menu-header {
+    position: relative;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary);
+    border-radius: 10rem;
+    z-index: 2;
+    cursor: pointer;
+
+  box-shadow: 0px 0.5rem 1rem var(--black-50);
+  }
+
+  .nav-menu {
+    display: block;
+    width: 90%;
+    max-width: none;
+  }
+
+  .nav-menu-logo img {
+    width: 3rem;
+    transition: transform 0.5s ease;
+  }
+
+  .nav-menu-logo img.rotated {
+    transform: rotate(360deg);
+  }
+
+  .nav-menu-toggle {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-menu-hamburger-icon {
+    width: 20px;
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .nav-menu-item {
+    transition: all 0.2s ease;
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 0 0 4px;
+    background: var(--secondary);
+    border-radius: 1px;
+  }
+
+  .nav-menu-hamburger-icon.open .nav-menu-item {
+    background: var(--secondary);
+  }
+
+  .nav-menu-hamburger-icon.open .nav-menu-item:first-child {
+    transform: rotate(45deg);
+    transform-origin: 5px;
+  }
+
+  .nav-menu-hamburger-icon.open .nav-menu-item:nth-child(2) {
+    transform: rotate(-45deg);
+    transform-origin: 6px;
+  }
+
+  .nav-menu-overlay {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--green-light);
+  box-shadow: 0px 0.5rem 1.5rem var(--black-50);
+    border-radius: 0 0 1rem 1rem;
+    margin-top: -3rem;
+    padding-top: 1rem;
+    transform-origin: top;
+    transform: scaleY(0);
+    overflow: hidden;
+    will-change: transform;
+
+  }
+
+  .nav-menu-flex {
+  padding: 2rem 0 3rem 0;
+}
+
+.nav-menu-flex ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu-flex li {
+  margin: -4px 0;
+  opacity: 0;
+}
+
+.nav-menu-flex a {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  position: relative;
+  text-decoration: none;
+  color: var(--green);
+  font-size: 5rem;
+  overflow: hidden;
+}
+
+.nav-menu-flex a div div {
+  position: relative;
+  will-change: transform;
+}
+
+.nav-menu-footer {
+  padding: 1rem 1.75rem 1.5rem 1.75rem;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-menu-dark{
+  flex: 1;
+}
+
+.nav-menu-lang a {
+  text-decoration: none;
+  background-color: var(--green);
+  border-radius: 15rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-family: inherit;
+  color: var(--white);
+  font-size: 2rem;
+}
+
+}

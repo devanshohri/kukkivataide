@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var heroLogo = document.querySelector('.hero-logo svg');
 
   function draw() {
-    heroLogo.classList.add('active')
+    heroLogo.classList.add('active');
   }
 
   gsap.to(".hero .hero-cards .card", {
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-
 
         ["#hero-card-1", "#hero-card-2", "#hero-card-3", "#hero-card-4"].forEach(
           (cardId, index) => {
@@ -66,16 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index === 0) {
               x = gsap.utils.interpolate("0%", "200%", smoothStep(cardProgress));
               rotation = gsap.utils.interpolate(0, -15, smoothStep(cardProgress));
-            }
-            else if (index === 1) {
+            } else if (index === 1) {
               x = gsap.utils.interpolate("0%", "100%", smoothStep(cardProgress));
               rotation = gsap.utils.interpolate(0, -7, smoothStep(cardProgress));
-            }
-            else if (index === 2) {
+            } else if (index === 2) {
               x = gsap.utils.interpolate("0%", "-100%", smoothStep(cardProgress));
               rotation = gsap.utils.interpolate(0, 7, smoothStep(cardProgress));
-            }
-            else if (index === 3) {
+            } else if (index === 3) {
               x = gsap.utils.interpolate("0%", "-200%", smoothStep(cardProgress));
               rotation = gsap.utils.interpolate(0, 15, smoothStep(cardProgress));
             }
@@ -177,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
           let x, rotate, rotationY;
 
-          // symmetric positions and rotations for 4 cards
           const positions = ["150%", "50%", "-50%", "-150%"];
           const rotations = [-10, -5, 5, 10];
 
@@ -211,11 +206,16 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
 
-    document.querySelector('#services-button').addEventListener("click", function() {
-    gsap.to(window, { 
-      scrollTo: () => window.innerHeight * 5
-    });
-  });
+    // Desktop-only smooth scroll
+    const servicesButton = document.querySelector('#services-button');
+    if (servicesButton) {
+      servicesButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        gsap.to(window, { 
+          scrollTo: () => window.innerHeight * 5
+        });
+      });
+    }
   }
 
   const spotlightImages = document.querySelector(".home-spotlight-images");
@@ -223,14 +223,14 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: ".home-spotlight",
     start: "top top",
-    end: () => `+=${spotlightImages.scrollHeight}`, // scroll distance = gallery height
-    pin: true,           // stick the gallery
-    scrub: true,         // smooth animation
+    end: () => `+=${spotlightImages.scrollHeight}`,
+    pin: true,
+    scrub: true,
     onUpdate: (self) => {
       const progress = self.progress;
 
-      const startY = 5;   // small offset down
-      const endY = -70;   // how far gallery moves up (tweak this %)
+      const startY = 5;
+      const endY = -70;
 
       const currentY = startY + (endY - startY) * progress;
 
@@ -240,8 +240,5 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-
-  setTimeout(draw, 100)
-
-
+  setTimeout(draw, 100);
 });

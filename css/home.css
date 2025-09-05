@@ -762,7 +762,7 @@ svg.active .hero-logo-13 {
 
 .contact-form button:hover {
   background: var(--green-light);
-  border-color: var(--primary);
+  border-color: var(--secondary);
   /* reveal border instead of adding it */
   color: var(--green);
 }

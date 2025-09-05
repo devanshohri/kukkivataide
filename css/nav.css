@@ -38,7 +38,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
   background-color: var(--primary);
   border-radius: 1.5rem;
   padding: 0.5rem 1.5rem;
@@ -48,24 +47,38 @@
 
 .nav-header-links ul {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  cursor: pointer;
 }
 
 .nav-header-links ul li a {
   font-size: 1.125rem;
   color: var(--secondary);
+  cursor: pointer;
+}
+
+#links1{
+  margin-right: var(--logo-height);
+}
+
+#links2 {
+  margin-left: var(--logo-height);
 }
 
 .nav-header-logo {
-   margin: 0 auto; /* centers the logo */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%); /* centers both X and Y */
+  background: none; /* no bg */
+  pointer-events: none; /* so clicks go through if needed */
+}
+
+.nav-header-logo img {
   height: var(--logo-height);
-  flex-shrink: 0; /* prevents shrinking */
 }
 
 .nav-menu {

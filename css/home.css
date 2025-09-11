@@ -796,11 +796,14 @@ svg.active .hero-logo-13 {
   fill: var(--secondary) !important;
 }
 
-.footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.footer-contact , .footer-info-tunnus , .footer-info-adress , h2{
+  margin-bottom: 8px;
 }
+
+.footer-contact , .footer-info-tunnus , .footer-info-adress , h3{
+  line-height: 1.2;
+}
+
 
 .footer-info {
   display: flex;

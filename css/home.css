@@ -520,6 +520,7 @@ svg.active .hero-logo-13 {
   padding: 0.8rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
   border-radius: 1rem;
   transform: rotateY(180deg);
@@ -924,6 +925,10 @@ svg.active .hero-logo-13 {
     background: none;
     padding: 6rem 2rem;
   }
+  .about-text p {
+  max-width: 80vw;
+}
+
 
     .services-header {
     transform: translateY(0%);

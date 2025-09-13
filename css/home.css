@@ -520,7 +520,7 @@ svg.active .hero-logo-13 {
   padding: 0.8rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
   border-radius: 1rem;
   transform: rotateY(180deg);

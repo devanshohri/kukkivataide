@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 
 :root {
     --black: #121212;
@@ -88,7 +88,7 @@ h2,
 h3 {
   font-family: "Instrument Serif", serif;
   font-weight: 400;
-  font-style: normal;
+  font-style: italic;
   line-height: 1.1;
 }
 
@@ -116,8 +116,8 @@ a {
 }
 
 p {
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 1.12rem;
   font-weight: 400;
 }
 
@@ -133,7 +133,7 @@ p {
   height: 0.8rem;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 800px) {
   h1 {
     font-size: 3rem;
   }

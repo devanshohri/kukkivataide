@@ -4,7 +4,6 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
 
 const menu = document.querySelector(".nav");
-const menuToggle = document.querySelector(".nav-menu-toggle");
 const menuHeader = document.querySelector(".nav-menu-header");
 const menuOverlay = document.querySelector(".nav-menu-overlay");
 const menuItems = document.querySelectorAll(".nav-menu-flex li");
@@ -17,8 +16,6 @@ let lastScrollY = window.scrollY;
 let isMenuVisible = true;
 let isAnimating = false;
 let splitTexts = [];
-let footerSplitTexts = [];
-
 
 function initMenu() {
   gsap.set(menuOverlay, {
@@ -41,53 +38,20 @@ function initMenu() {
     }
   });
 
-  const footerElements = document.querySelectorAll(
-    ".menu-social a, .menu-social span, .menu-time"
-  );
-  footerElements.forEach((element) => {
-    const split = new SplitText(element, {
-      type: "chars",
-    });
-    footerSplitTexts.push(split);
-
-    gsap.set(split.chars, {
-      opacity: 0,
-    });
-
-    if (element.classList.contains("menu-time")) {
-      gsap.set(element, { opacity: 0 });
-    }
-  });
-
-  gsap.set(menuItems, {
-    opacity: 1,
-  });
-
-  gsap.set(menuFooter, {
-    opacity: 1,
-    y: 20,
-  });
+  gsap.set(menuItems, { opacity: 1 });
+  gsap.set(menuFooter, { opacity: 1, y: 20 });
 }
 
 function toggleMenu() {
   if (isAnimating) return;
-
-  if (isOpen) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
+  isOpen ? closeMenu() : openMenu();
 }
 
 function openMenu() {
   isOpen = true;
   isAnimating = true;
-  if (hamburgerMenu) {
-    hamburgerMenu.classList.add("open");
-  }
-  if (menuLogo) {
-    menuLogo.classList.add("rotated");
-  }
+  if (hamburgerMenu) hamburgerMenu.classList.add("open");
+  if (menuLogo) menuLogo.classList.add("rotated");
 
   const tl = gsap.timeline({
     onComplete: () => {
@@ -101,9 +65,7 @@ function openMenu() {
     ease: "power3.out",
   });
 
-  const allWords = splitTexts.reduce((acc, split) => {
-    return acc.concat(split.words);
-  }, []);
+  const allWords = splitTexts.flatMap((split) => split.words);
 
   tl.to(
     allWords,
@@ -122,22 +84,6 @@ function openMenu() {
       duration: 0.3,
       y: 0,
       ease: "power2.out",
-      onComplete: () => {
-        const timeElement = document.querySelector(".menu-time");
-        if (timeElement) {
-          gsap.set(timeElement, { opacity: 1 });
-        }
-
-        const allFooterChars = footerSplitTexts.reduce((acc, split) => {
-          return acc.concat(split.chars);
-        }, []);
-
-        allFooterChars.forEach((char, index) => {
-          setTimeout(() => {
-            scrambleText([char], 0.4);
-          }, index * 30);
-        });
-      },
     },
     "-=1"
   );
@@ -146,12 +92,8 @@ function openMenu() {
 function closeMenu() {
   isOpen = false;
   isAnimating = true;
-  if (hamburgerMenu) {
-    hamburgerMenu.classList.remove("open");
-  }
-  if (menuLogo) {
-    menuLogo.classList.remove("rotated");
-  }
+  if (hamburgerMenu) hamburgerMenu.classList.remove("open");
+  if (menuLogo) menuLogo.classList.remove("rotated");
 
   const tl = gsap.timeline({
     onComplete: () => {
@@ -159,25 +101,12 @@ function closeMenu() {
     },
   });
 
-  const allWords = splitTexts.reduce((acc, split) => {
-    return acc.concat(split.words);
-  }, []);
+  const allWords = splitTexts.flatMap((split) => split.words);
 
-  tl.to([menuFooter], {
+  tl.to(menuFooter, {
     duration: 0.3,
     y: 20,
     ease: "power2.in",
-    onStart: () => {
-      const timeElement = document.querySelector(".menu-time");
-      if (timeElement) {
-        gsap.set(timeElement, { opacity: 0 });
-      }
-
-      const allFooterChars = footerSplitTexts.reduce((acc, split) => {
-        return acc.concat(split.chars);
-      }, []);
-      gsap.set(allFooterChars, { opacity: 0 });
-    },
   });
 
   tl.to(
@@ -206,9 +135,7 @@ function handleScroll() {
   const currentScrollY = window.scrollY;
 
   if (currentScrollY > lastScrollY && currentScrollY > 100) {
-    if (isOpen) {
-      closeMenu();
-    }
+    if (isOpen) closeMenu();
     if (isMenuVisible) {
       menu.classList.add("hidden");
       isMenuVisible = false;
@@ -223,34 +150,6 @@ function handleScroll() {
   lastScrollY = currentScrollY;
 }
 
-function updateTime() {
-  const now = new Date();
-  const timeString = now.toLocaleTimeString("en-US", {
-    hour12: false,
-  });
-  const timeElement = document.querySelector(".menu-time");
-  if (timeElement) {
-    if (!isOpen) {
-      timeElement.textContent = `${timeString} LOCAL`;
-    } else {
-      const timeSplit = footerSplitTexts.find(
-        (split) => split.element === timeElement
-      );
-
-      if (timeSplit && timeSplit.chars) {
-        const newText = `${timeString} LOCAL`;
-        const oldChars = timeSplit.chars;
-
-        newText.split("").forEach((char, index) => {
-          if (oldChars[index]) {
-            oldChars[index].textContent = char;
-          }
-        });
-      }
-    }
-  }
-}
-
 function init() {
   initMenu();
 
@@ -262,17 +161,12 @@ function init() {
     const link = item.querySelector("a");
     if (link) {
       link.addEventListener("click", () => {
-        if (isOpen) {
-          closeMenu();
-        }
+        if (isOpen) closeMenu();
       });
     }
   });
 
   window.addEventListener("scroll", handleScroll);
-
-  updateTime();
-  setInterval(updateTime, 1000);
 }
 
 if (document.readyState === "loading") {
